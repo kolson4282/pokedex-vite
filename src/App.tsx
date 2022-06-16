@@ -1,16 +1,14 @@
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 import PokemonCard from "./components/PokemonCard/PokemonCard";
+import Home from "./pages/Home";
 
-const starters = ["bulbasaur", "charmander", "squirtle"];
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {starters.map((pkmn) => (
-        <PokemonCard key={pkmn} name={pkmn} />
-      ))}
+      <Home />
     </QueryClientProvider>
   );
 }
