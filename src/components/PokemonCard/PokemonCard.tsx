@@ -14,7 +14,7 @@ const PokemonCard = ({ name }: Props) => {
   if (pokemon.isLoading) return <p>Loading...</p>;
 
   return (
-    <>
+    <div>
       <div>{pokemon.data?.id}</div>
       <img
         style={{ width: "10em" }}
@@ -22,7 +22,7 @@ const PokemonCard = ({ name }: Props) => {
         alt={name}
       />
       <div>{name}</div>
-    </>
+    </div>
   );
 };
 
