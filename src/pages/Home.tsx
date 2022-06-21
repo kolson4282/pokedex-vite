@@ -11,11 +11,19 @@ const Home = () => {
   if (pokemon.isLoading) return <p>...Loading</p>;
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {pokemon?.data.results.map((pkmn: { name: string }) => (
-        <PokemonCard key={pkmn.name} name={pkmn.name} />
-      ))}
-    </div>
+    <>
+      {!pokemon.data.previous || (
+        <button onClick={() => setUrl(pokemon.data.previous)}>Prev</button>
+      )}
+      {!pokemon.data.next || (
+        <button onClick={() => setUrl(pokemon.data.next)}>Next</button>
+      )}
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {pokemon?.data.results.map((pkmn: { name: string }) => (
+          <PokemonCard key={pkmn.name} name={pkmn.name} />
+        ))}
+      </div>
+    </>
   );
 };
 
