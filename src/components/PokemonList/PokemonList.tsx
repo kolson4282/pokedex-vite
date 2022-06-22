@@ -9,7 +9,7 @@ type Props = {
 const PokemonList = ({ offset, limit }: Props) => {
   const pokemon = useQuery(["list", { offset, limit }], async () => {
     return fetch(
-      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+      `https://pokeapi.co/api/v2/pokemon-species?offset=${offset}&limit=${limit}`
     ).then((res) => res.json());
   });
 

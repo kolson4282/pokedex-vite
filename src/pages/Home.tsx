@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PokemonList from "../components/PokemonList/PokemonList";
 
-const NUM_OF_POKEMON = 1126;
+const NUM_OF_POKEMON = 898;
 
 const Home = () => {
   const [offset, setOffset] = useState(0);
