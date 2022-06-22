@@ -10,8 +10,8 @@ const createPokemonCards = (offset: number, limit: number) => {
   let pokemon = [];
   for (let i = offset + 1; i <= offset + limit; i++) {
     pokemon.push(
-      <Link to={`/pokemon/${i}`}>
-        <PokemonCard key={i} id={i} />
+      <Link key={i} to={`/pokemon/${i}`}>
+        <PokemonCard id={i} />
       </Link>
     );
   }
