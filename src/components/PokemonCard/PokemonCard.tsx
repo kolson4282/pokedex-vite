@@ -1,12 +1,12 @@
 import { useQuery } from "react-query";
 
 type Props = {
-  name: string;
+  id: number;
 };
 
-const PokemonCard = ({ name }: Props) => {
-  const pokemonInfo = useQuery([`pokemon`, { name }], () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then((res) =>
+const PokemonCard = ({ id }: Props) => {
+  const pokemonInfo = useQuery([`pokemon`, { id }], () => {
+    return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
       res.json()
     );
   });
@@ -19,9 +19,9 @@ const PokemonCard = ({ name }: Props) => {
       <img
         style={{ width: "10em" }}
         src={pokemonInfo.data?.sprites.other["official-artwork"].front_default}
-        alt={name}
+        alt={pokemonInfo.data?.name}
       />
-      <div>{name}</div>
+      <div>{pokemonInfo.data?.name}</div>
     </div>
   );
 };

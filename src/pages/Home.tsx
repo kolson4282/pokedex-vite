@@ -17,9 +17,7 @@ const Home = () => {
   return (
     <>
       {offset == 0 || <button onClick={previous}>Prev</button>}
-      {offset <= NUM_OF_POKEMON - limit ? (
-        <button onClick={next}>Next</button>
-      ) : null}
+      {offset <= NUM_OF_POKEMON - limit && <button onClick={next}>Next</button>}
       <PokemonList offset={offset} limit={limit} />
     </>
   );
