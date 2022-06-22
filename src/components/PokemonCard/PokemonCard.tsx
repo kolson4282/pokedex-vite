@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { fetchFromEndpoint } from "../../utils/utils";
 
 type Props = {
   id: number;
@@ -6,9 +7,7 @@ type Props = {
 
 const PokemonCard = ({ id }: Props) => {
   const pokemonInfo = useQuery([`pokemon`, { id }], () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
-      res.json()
-    );
+    return fetchFromEndpoint(`pokemon/${id}`);
   });
 
   if (pokemonInfo.isLoading) return <p>Loading...</p>;

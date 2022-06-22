@@ -1,19 +1,16 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { fetchFromEndpoint } from "../utils/utils";
 
 const PokemonPage = () => {
   const { id } = useParams();
 
   const pokemonSpecies = useQuery([`pokemon-species`, { id }], () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then(
-      (res) => res.json()
-    );
+    return fetchFromEndpoint(`pokemon-species/${id}`);
   });
 
   const pokemonInfo = useQuery([`pokemon`, { id }], () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
-      res.json()
-    );
+    return fetchFromEndpoint(`pokemon/${id}`);
   });
 
   if (pokemonSpecies.isLoading || pokemonInfo.isLoading)
@@ -21,7 +18,7 @@ const PokemonPage = () => {
 
   return (
     <div>
-      {pokemonSpecies.data?.name}{" "}
+      {pokemonSpecies.data?.name}
       <img
         style={{ width: "10em" }}
         src={pokemonInfo.data?.sprites.other["official-artwork"].front_default}
