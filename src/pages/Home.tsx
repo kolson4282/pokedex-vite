@@ -1,35 +1,26 @@
 import { useState } from "react";
-import { useQuery } from "react-query";
-import PokemonCard from "../components/PokemonCard/PokemonCard";
+import PokemonList from "../components/PokemonList/PokemonList";
+
+const NUM_OF_POKEMON = 1126;
 
 const Home = () => {
-  const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=0`
-  );
-
-  const pokemon = useQuery(url, () => {
-    return fetch(url).then((res) => res.json());
-  });
-
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(20);
   const previous = () => {
-    setUrl(pokemon.data.previous);
+    setOffset((prevOffset) => prevOffset - limit);
   };
 
   const next = () => {
-    setUrl(pokemon.data.next);
+    setOffset((prevOffset) => prevOffset + limit);
   };
-
-  if (pokemon.isLoading) return <p>...Loading</p>;
 
   return (
     <>
-      {!pokemon.data.previous || <button onClick={previous}>Prev</button>}
-      {!pokemon.data.next || <button onClick={next}>Next</button>}
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {pokemon?.data.results.map((pkmn: { name: string }) => (
-          <PokemonCard key={pkmn.name} name={pkmn.name} />
-        ))}
-      </div>
+      {offset == 0 || <button onClick={previous}>Prev</button>}
+      {offset <= NUM_OF_POKEMON - limit ? (
+        <button onClick={next}>Next</button>
+      ) : null}
+      <PokemonList offset={offset} limit={limit} />
     </>
   );
 };

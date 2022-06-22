@@ -5,7 +5,7 @@ type Props = {
 };
 
 const PokemonCard = ({ name }: Props) => {
-  const pokemonInfo = useQuery(`${name}-info`, () => {
+  const pokemonInfo = useQuery([`pokemon`, { name }], () => {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then((res) =>
       res.json()
     );
