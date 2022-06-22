@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PokemonCard from "../PokemonCard/PokemonCard";
 
 type Props = {
@@ -8,7 +9,11 @@ type Props = {
 const createPokemonCards = (offset: number, limit: number) => {
   let pokemon = [];
   for (let i = offset + 1; i <= offset + limit; i++) {
-    pokemon.push(<PokemonCard key={i} id={i} />);
+    pokemon.push(
+      <Link to={`/pokemon/${i}`}>
+        <PokemonCard key={i} id={i} />
+      </Link>
+    );
   }
   return pokemon;
 };
